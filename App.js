@@ -10,7 +10,7 @@ import ResetTimer from './src/components/ResetTimer';
 
 const options = ['Pomodoro', 'Short Break', 'Long Break']; // Titulo opciones disponibles.
 const Colors = ['#F7DC6F', '#A2D9CE', '#D7BDE2']; // Colores de fondo según la opción seleccionada.
-const Times = [(0.5 * 60), (2 * 60), (15 * 60)]; // Tiempos por opción [Cantidad minutos * 60 (segundos) = total de segundos].
+const Times = [(25 * 60), (5 * 60), (15 * 60)]; // Tiempos por opción [Cantidad minutos * 60 (segundos) = total de segundos].
 
 export default function App() {
 	const [started, setStarted] = useState(false); // Guardar si el contador se ha iniciado.

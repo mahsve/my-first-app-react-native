@@ -1,24 +1,26 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const optionsTab = ['Pomodoro', 'Short Break', 'Long Break'];
-
-export default function ({ setTime, option, setOption }) {
+export default function ({ options, setTime, option, setOption }) {
   const handleOption = (option) => {
-    const newTime = option == 0 ? 25 * 60 : option == 1 ? 5 * 60 : 15 * 60;
+    const newTime = option == 0 ? 2 * 60 : option == 1 ? 1 * 60 : 1 * 60;
     setOption(option);
     setTime(newTime);
   };
 
   return (
     <View style={styles.container}>
-      {optionsTab.map((text, index) => (
-        <TouchableOpacity key={index} style={[styles.touchable, option === index && styles.touchableActive]} onPress={() => handleOption(index)}>
-          <Text>{text}</Text>
+      {options.map((opt, index) => (
+        <TouchableOpacity key={index} style={[styles.touchable, opt === index && styles.touchableActive]} onPress={() => handleOption(index)}>
+          <Text>{opt}</Text>
         </TouchableOpacity>
       ))}
     </View>
   )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {

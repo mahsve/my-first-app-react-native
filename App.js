@@ -10,7 +10,7 @@ import ResetTimer from './src/components/ResetTimer';
 
 const options = ['Pomodoro', 'Short Break', 'Long Break']; // Titulo opciones disponibles.
 const Colors = ['#F7DC6F', '#A2D9CE', '#D7BDE2']; // Colores de fondo según la opción seleccionada.
-const Times = [(1 * 60), (2 * 60), (15 * 60)]; // Tiempos por opción [Cantidad minutos * 60 (segundos) = total de segundos].
+const Times = [(0.5 * 60), (2 * 60), (15 * 60)]; // Tiempos por opción [Cantidad minutos * 60 (segundos) = total de segundos].
 
 export default function App() {
 	const [started, setStarted] = useState(false); // Guardar si el contador se ha iniciado.
@@ -52,6 +52,8 @@ export default function App() {
 		if (selected !== TimerWorking && started) {
 			setTimer(Times[selected]) // Reiniciamos el contador pero con el tiempo de la nueva tabla seleccionada.
 		} else {
+			if (selected !== TimerWorking && !started)
+				setTimer(Times[selected])
 			setStarted(!started); // Si se mantiene el la misma vista, solo inicia o detiene el contador dependiendo de su estado.
 		}
 	};
@@ -79,7 +81,7 @@ export default function App() {
 			<Header options={options} selected={selected} handleSelected={handleSelected} />
 			<Timer timer={timer} Times={Times} selected={selected} TimerWorking={TimerWorking} />
 			<ToggleTimer started={started} selected={selected} TimerWorking={TimerWorking} handleStarted={handleStarted} />
-			{selected === TimerWorking && timer !== Times[selected] && <ResetTimer handleReset={handleReset}/>}
+			{selected === TimerWorking && timer !== Times[selected] && <ResetTimer handleReset={handleReset} />}
 
 			<StatusBar style="auto" />
 		</View>
